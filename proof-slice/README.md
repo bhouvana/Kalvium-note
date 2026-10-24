@@ -4,10 +4,10 @@
 A failing model provider can consume request capacity and spread failures; the breaker prevents repeated calls while the dependency is unhealthy.
 
 ## Chosen control
-A circuit breaker in `circuitBreaker.js` tracks failures, opens at the configured ratio and minimum volume, then allows one half-open recovery probe.
+A circuit breaker in `src/circuitBreaker.js` tracks failures, opens at the configured ratio and minimum volume, then allows one half-open recovery probe.
 
 ## How to run / test
-Run `node --test proof-slice/circuitBreaker.test.js` with Node.js 18+. Expected: all six tests pass.
+From the repository root, run `node --test proof-slice/circuitBreaker.test.js` with Node.js 18+. Expected: all six tests pass.
 
 ## Evidence
 Automated tests cover minimum-volume gating, threshold trips, short-circuiting without calling the dependency, successful recovery, failed-probe reopening, concurrent probe exclusion, and transition order.
