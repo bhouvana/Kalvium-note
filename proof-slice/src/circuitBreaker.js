@@ -94,7 +94,7 @@ function createCircuitBreaker(options = {}) {
     } catch (error) {
       failures += 1;
       metrics.failure_total += 1;
-      if (calls >= minimumRequests && failures / calls >= failureThreshold) {
+      if (state === 'CLOSED' && calls >= minimumRequests && failures / calls >= failureThreshold) {
         openCircuit();
       }
       throw error;
